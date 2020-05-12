@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="estilo.css" rel="stylesheet">
+    <script src="script.js"></script>
+</head>
+<body onload="load()">
+
+    <div class="container">
+        <nav class="navbar navbar-default tira-borda backwhite">
+            <div class="container-fluid">          
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav largura altura margin-lateral">
+                    <li><a href="#"></a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                  <li class="dropdown margin-lateral mouse" id="cliente">
+                    <a href="#" onclick="background(this)" id="1" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="../img/people.png" class="icone"> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="mouse" href="Cliente/Cadastro/index.html">CADASTRAR CLIENTE</a></li>
+                      <li><a class="mouse" href="Cliente/Alterar/index.html">ALTERAR CLIENTE</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown margin-lateral mouse" id="produto">
+                    <a href="#" onclick="background(this)" id="2" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="../img/produto.png" class="icone"> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="mouse" href="Produto/Cadastro/index.html">CADASTRAR PRODUTO</a></li>
+                      <li><a class="mouse" href="Produto/Alteração/index.html">ALTERAR PRODUTO</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown margin-lateral mouse" id="venda">
+                    <a href="#" onclick="background(this)" id="3" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="../img/venda.png" class="icone"> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="mouse" href="Venda/Cadastro/index.html">CADASTRAR VENDA</a></li>
+                      <li><a class="mouse" href="Venda/Consulta/index.html">PESQUISAR VENDA</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown mouse" id="estoque">
+                    <a href="#" onclick="background(this)" id="4" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="../img/estoque.png" class="icone"> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="mouse" href="Estoque/Conferencia/index.html">CONFERÊNCIA</a></li>
+                      <li><a class="mouse" href="Estoque/Recebimento/index.html">RECEBIMENTO</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right mouse" id="sair">
+                    <li><a href="#" onclick="background(this)" id="5"><img src="../img/exit.png" class="icone"></a></li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+    </div>
+
+    <div class="logo">
+        <img src="../img/logo_menu.png" class="logo sombra">
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

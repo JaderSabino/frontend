@@ -1,0 +1,76 @@
+body{
+    background-image: url(../img/fundo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+.tira-borda
+{
+    border-radius: 0% !important;
+}
+
+.logo
+{
+    position: relative;
+    top: -48px;
+    left: 100px;
+}    
+
+.sombra
+{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.603);
+}
+
+.largura
+{
+    width: 280px;
+}
+
+.altura
+{
+    height: 50px;
+}
+
+.backwhite
+{
+    background: white;
+}
+
+.icone
+{
+    height: 40px;
+    width: 40px;
+}
+
+.margin-lateral
+{
+    margin-right: 30px;
+}
+
+.mouse:hover
+{
+    background-color: #f7cba5 !important;
+    transition: 0.2s;
+}
+
+.mouse
+{
+    background-color: white !important;
+    transition: 0.2s;
+}
+
+.ativo
+{
+    background-color: #f7cba5 !important;
+}
+
+.ativo:visited
+{
+    background-color: #f7cba5 !important;
+}
+
+.ativo:active
+{
+    background-color: #f7cba5 !important;
+} 
