@@ -160,7 +160,7 @@ const geraObjetoProduto = async () => {
 const inserirProdutos = (listProd) => {
     const listaProdutos = document.querySelector('#listaProdutos'); 
     for (let index = 0; index < listProd.length; index++) {
-        if(listProd[index]['produto_ativo'] == 'S'){
+        if(listProd[index]['produto_ativo'] == 'S' && listProd[index]['quantidade'] > 0){
             const option = document.createElement('option');
             const valor = 'valor'+(index+2);
             option.setAttribute('value',valor);
@@ -199,39 +199,43 @@ const listarProduto = () => {
         if(validaCarrinho(produto)){
             alert('Produto já existente no carrinho');
         }else{
-            produto['quantidade'] = carregarProduto[2].value;
-            carrinho.push(new ProdutoCarrinho(produto));
-            const tr = document.createElement('tr');
-            tr.classList.add('itemVenda');
-            tr.setAttribute('name', indexExcluir);
-            const tdCodigo = document.createElement('td');
-            const tdNome = document.createElement('td');
-            const tdQuantidade = document.createElement('td');
-            const tdValor = document.createElement('td');
-            const tdExcluir = document.createElement('td'); 
-
-            tdCodigo.innerText = produto['id_produto'];
-            tdNome.innerText = produto['nome_produto'];
-            tdQuantidade.innerText = carregarProduto[2].value;
-            let valor = Number(produto['preco']) * Number(carregarProduto[2].value);
-            tdValor.innerText = valor;
-            let valorTotal = Number(formulario[1].value);
-            formulario[1].value = valorTotal + valor;
-
-            const aExcluir = document.createElement('a'); 
-            aExcluir.classList.add('excluir');
-            aExcluir.innerText = 'Excluir';
-            tdExcluir.appendChild(aExcluir);
-            tdExcluir.setAttribute('onclick', `excluirItem(${indexExcluir})`);
-            indexExcluir++;
-
-            tr.appendChild(tdCodigo);
-            tr.appendChild(tdNome);
-            tr.appendChild(tdQuantidade);
-            tr.appendChild(tdValor);
-            tr.appendChild(tdExcluir);
-
-            listaVenda.appendChild(tr);
+            if(!validaProduto(produto, carregarProduto[2].value)){
+                alert('Somente ' + produto['quantidade'] + ' ' + produto['nome_produto'] + ' no estoque');
+            }else{
+                produto['quantidade'] = carregarProduto[2].value;
+                carrinho.push(new ProdutoCarrinho(produto));
+                const tr = document.createElement('tr');
+                tr.classList.add('itemVenda');
+                tr.setAttribute('name', indexExcluir);
+                const tdCodigo = document.createElement('td');
+                const tdNome = document.createElement('td');
+                const tdQuantidade = document.createElement('td');
+                const tdValor = document.createElement('td');
+                const tdExcluir = document.createElement('td'); 
+    
+                tdCodigo.innerText = produto['id_produto'];
+                tdNome.innerText = produto['nome_produto'];
+                tdQuantidade.innerText = carregarProduto[2].value;
+                let valor = Number(produto['preco']) * Number(carregarProduto[2].value);
+                tdValor.innerText = valor;
+                let valorTotal = Number(formulario[1].value);
+                formulario[1].value = valorTotal + valor;
+    
+                const aExcluir = document.createElement('a'); 
+                aExcluir.classList.add('excluir');
+                aExcluir.innerText = 'Excluir';
+                tdExcluir.appendChild(aExcluir);
+                tdExcluir.setAttribute('onclick', `excluirItem(${indexExcluir})`);
+                indexExcluir++;
+    
+                tr.appendChild(tdCodigo);
+                tr.appendChild(tdNome);
+                tr.appendChild(tdQuantidade);
+                tr.appendChild(tdValor);
+                tr.appendChild(tdExcluir);
+    
+                listaVenda.appendChild(tr);
+            }
         }
     }
 }
@@ -244,6 +248,13 @@ const validaCarrinho = (prod) => {
     }
     return false;
 }
+
+const validaProduto = (prod, quant) => {
+    if(prod['quantidade'] - quant < 0){
+        return false;
+    }
+    return true;
+};
 
 const retiraItemCarrinho = (id) => {
     for (let index = 0; index < carrinho.length; index++) {

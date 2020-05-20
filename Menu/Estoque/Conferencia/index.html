@@ -7,7 +7,7 @@
     <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="estilo.css" rel="stylesheet">
 </head>
-<body>
+<body onload="carregaPagina()">
 
     <div class="container">
         <nav class="navbar navbar-default tira-borda backwhite">
@@ -23,8 +23,8 @@
                         <img src="../../../img/people.png" class="icone"> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="mouse" href="#">CADASTRAR CLIENTE</a></li>
-                      <li><a class="mouse" href="#">ALTERAR CLIENTE</a></li>
+                      <li><a class="mouse" href="../../Cliente/Cadastro/index.html">CADASTRAR CLIENTE</a></li>
+                      <li><a class="mouse" href="../../Cliente/Alterar/index.html">ALTERAR CLIENTE</a></li>
                     </ul>
                   </li>
                   <li class="dropdown margin-lateral mouse" id="produto">
@@ -32,8 +32,8 @@
                         <img src="../../../img/produto.png" class="icone"> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="mouse" href="#">CADASTRAR PRODUTO</a></li>
-                      <li><a class="mouse" href="#">ALTERAR PRODUTO</a></li>
+                      <li><a class="mouse" href="../../Produto/Cadastro/index.html">CADASTRAR PRODUTO</a></li>
+                      <li><a class="mouse" href="../../Produto/Alteração/index.html">ALTERAR PRODUTO</a></li>
                     </ul>
                   </li>
                   <li class="dropdown margin-lateral mouse" id="venda">
@@ -41,8 +41,8 @@
                         <img src="../../../img/venda.png" class="icone"> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="mouse" href="#">CADASTRAR VENDA</a></li>
-                      <li><a class="mouse" href="#">PESQUISAR VENDA</a></li>
+                      <li><a class="mouse" href="../../Venda/Cadastro/index.html">CADASTRAR VENDA</a></li>
+                      <li><a class="mouse" href="../../Venda/Consulta/index.html">PESQUISAR VENDA</a></li>
                     </ul>
                   </li>
                   <li class="dropdown mouse" id="estoque">
@@ -50,11 +50,12 @@
                         <img src="../../../img/estoque.png" class="icone"> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="mouse" href="#">CONFERÊNCIA</a></li>
-                      <li><a class="mouse" href="#">RECEBIMENTO</a></li>
+                      <li><a class="mouse" href="../../Estoque/Conferencia/index.html">CONFERÊNCIA</a></li>
+                      <li><a class="mouse" href="../../Estoque/Recebimento/index.html ">RECEBIMENTO</a></li>
                     </ul>
                   </li>
                 </ul>
+                
               </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
           </nav>
@@ -68,17 +69,15 @@
         CONFERÊNCIA
       </h1>
       <form action="" id="formulario">
-        <div class="form-item">
-            <label class="form-item-label" for="">CODIGO</label>
-            <input class="form-item-input" type="text" name="" id="">
-        </div>
         <dvi class="form-item">
-            <label class="form-item-label" for="">PRODUTO</label>
-            <input class="form-item-input" type="text" name="" id="">
+          <label class="form-item-label" for="">produto</label>
+          <select id="listaProdutos" name="select" class="form-item-input">
+            <option value="valor1" selected>---</option> 
+          </select>
         </dvi>
         <div class="form-item">
             <label class="form-item-label" for="">QTD SISTEMA</label>
-            <input class="form-item-input" type="text" name="" id="">
+            <input class="form-item-input" type="text" readonly>
         </div>
         <div class="form-item">
           <label class="form-item-label" for="">QTD FISICA</label>
@@ -86,8 +85,8 @@
       </div>
       </form>
       <div class="botoes">
-        <a class="botao" href="../../index.html">VOLTAR</a>
-        <a class="botao" href="../../index.html">CONFERIR</a>
+        <a class="botao" onclick="voltar()">VOLTAR</a>
+        <a class="botao" onclick="conferir()">CONFERIR</a>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

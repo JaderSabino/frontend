@@ -38,27 +38,26 @@ const validaFormulario = (form) => {
 }
 
 const converteJson = (form) => {
-    if(form[3].checked){
+    if(form[2].checked){
         return {
             nome_produto: form[0].value,
             preco: form[1].value.replace(",", "."),
-            quantidade: form[2].value,
-            unidade_medida: form[3].value,
+            quantidade: 0,
+            unidade_medida: form[2].value,
             produto_ativo: 'S'
         }
     }else{
         return {
             nome_produto: form[0].value,
             preco: form[1].value.replace(",", "."),
-            quantidade: form[2].value,
-            unidade_medida: form[4].value,
+            quantidade: 0,
+            unidade_medida: form[3].value,
             produto_ativo: 'S'
         }
     }
 }
 
 const inserirProduto = async (dadosCliente) => {
-    console.log(dadosCliente);
     const res = await fetch(url,{
         method: 'POST',
         headers: {

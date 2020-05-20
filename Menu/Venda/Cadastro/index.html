@@ -9,56 +9,57 @@
 </head>
 <body onload="geraObjetoCliente(),geraObjetoProduto(),cancelar()">
 
-    <div class="container">
-        <nav class="navbar navbar-default tira-borda backwhite">
-            <div class="container-fluid">          
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav largura altura margin-lateral">
-                    <li><a href="#"></a></li>
+  <div class="container">
+    <nav class="navbar navbar-default tira-borda backwhite">
+        <div class="container-fluid">          
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav largura altura margin-lateral">
+                <li><a href="#"></a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+              <li class="dropdown margin-lateral mouse" id="cliente">
+                <a href="#" onclick="  " id="1" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="../../../img/people.png" class="icone"> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="mouse" href="../../Cliente/Cadastro/index.html">CADASTRAR CLIENTE</a></li>
+                  <li><a class="mouse" href="../../Cliente/Alterar/index.html">ALTERAR CLIENTE</a></li>
                 </ul>
-                <ul class="nav navbar-nav">
-                  <li class="dropdown margin-lateral mouse" id="cliente">
-                    <a href="#" onclick="  " id="1" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="../../../img/people.png" class="icone"> <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="mouse" href="#">CADASTRAR CLIENTE</a></li>
-                      <li><a class="mouse" href="#">ALTERAR CLIENTE</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown margin-lateral mouse" id="produto">
-                    <a href="#" onclick="  " id="2" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="../../../img/produto.png" class="icone"> <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="mouse" href="#">CADASTRAR PRODUTO</a></li>
-                      <li><a class="mouse" href="#">ALTERAR PRODUTO</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown margin-lateral mouse" id="venda">
-                    <a href="#" onclick="  " id="3" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="../../../img/venda.png" class="icone"> <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="mouse" href="#">CADASTRAR VENDA</a></li>
-                      <li><a class="mouse" href="#">PESQUISAR VENDA</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown mouse" id="estoque">
-                    <a href="#" onclick="  " id="4" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="../../../img/estoque.png" class="icone"> <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="mouse" href="#">CONFERÊNCIA</a></li>
-                      <li><a class="mouse" href="#">RECEBIMENTO</a></li>
-                    </ul>
-                  </li>
+              </li>
+              <li class="dropdown margin-lateral mouse" id="produto">
+                <a href="#" onclick="  " id="2" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="../../../img/produto.png" class="icone"> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="mouse" href="../../Produto/Cadastro/index.html">CADASTRAR PRODUTO</a></li>
+                  <li><a class="mouse" href="../../Produto/Alteração/index.html">ALTERAR PRODUTO</a></li>
                 </ul>
-              </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-          </nav>
-    </div>
+              </li>
+              <li class="dropdown margin-lateral mouse" id="venda">
+                <a href="#" onclick="  " id="3" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="../../../img/venda.png" class="icone"> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="mouse" href="#">CADASTRAR VENDA</a></li>
+                  <li><a class="mouse" href="../Consulta/index.html">PESQUISAR VENDA</a></li>
+                </ul>
+              </li>
+              <li class="dropdown mouse" id="estoque">
+                <a href="#" onclick="  " id="4" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="../../../img/estoque.png" class="icone"> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="mouse" href="../../Estoque/Conferencia/index.html">CONFERÊNCIA</a></li>
+                  <li><a class="mouse" href="../../Estoque/Recebimento/index.html ">RECEBIMENTO</a></li>
+                </ul>
+              </li>
+            </ul>
+            
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+  </div>
 
     <div class="logo">
       <img src="../../../img/logo_menu.png" class="logo sombra">

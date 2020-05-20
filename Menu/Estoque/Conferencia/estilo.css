@@ -176,6 +176,7 @@ input
     margin-left: auto;
     text-align: center;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .botao:hover

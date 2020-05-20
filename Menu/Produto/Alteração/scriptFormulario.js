@@ -10,8 +10,10 @@ const cancelar = () => {
     limpaFormulario(formulario);
     const listaProdutos = document.querySelector('#listaProdutos');
     listaProdutos[0].selected = true;
+    formulario[2].checked = false;  
     formulario[3].checked = false;
     formulario[4].checked = false;
+    formulario[5].checked = false;
 }
 
 const voltar = () => {
@@ -43,49 +45,29 @@ const validaFormulario = (form) => {
 }
 
 const converteJson = (form) => {
-    if(form[3].checked){
-        if(form[5].checked){
-            return {
-                nome_produto: form[0].innerText,
-                preco: form[1].value,
-                quantidade: form[2].value,
-                unidade_medida: 'kg',
-                produto_ativo: 'S'
-            }
-        }else{
-            return {
-                nome_produto: form[0].innerText,
-                preco: form[1].value,
-                quantidade: form[2].value,
-                unidade_medida: 'kg',
-                produto_ativo: 'N'
-            }
-        }
+    let undMed;
+    let ativo;
+    if(form[2].checked){
+        undMed = 'kg';
     }else{
-        if(form[5].checked){
-            return {
-                nome_produto: form[0].innerText,
-                preco: form[1].value,
-                quantidade: form[2].value,
-                unidade_medida: 'un',
-                produto_ativo: 'S'
-            }
-        }else{
-            return {
-                nome_produto: form[0].innerText,
-                preco: form[1].value,
-                quantidade: form[2].value,
-                unidade_medida: 'un',
-                produto_ativo: 'N'
-            }
-        }
+        undMed = 'un';
+    }
+    if(form[4].checked){
+        ativo = 'S';
+    }else{
+        ativo = 'N';
+    }
+    return {
+        nome_produto: form[0].innerText,
+        preco: form[1].value,
+        unidade_medida: undMed,
+        produto_ativo: ativo
     }
 }
 
 const inserirProduto = async (dadosCliente) => {
     if(produto){
         produto['preco'] = dadosCliente['preco'].replace(",", ".");
-        produto['quantidade'] = dadosCliente['quantidade'];
         produto['unidade_medida'] = dadosCliente['unidade_medida'];
         produto['produto_ativo'] = dadosCliente['produto_ativo'];
         console.log(produto);
@@ -163,19 +145,17 @@ const consultaProduto = (prod) => {
         }
     }
     formulario[1].value = produto['preco'];
-    formulario[2].value = produto['quantidade'];
     if(produto['unidade_medida'] == 'kg'){
-        formulario[3].checked = true;
+        formulario[2].checked = true;
     }else{
-        formulario[4].checked = true;
+        formulario[3].checked = true;
     }
     if(produto['produto_ativo'] == 'S'){
-        formulario[5].checked = true;
+        formulario[4].checked = true;
     }else{
-        formulario[6].checked = true;
+        formulario[5].checked = true;
     }
 }
-//        console.log(option.innerHTML);
 
 const selectproduto = (botao) => {
     consultaProduto(botao.innerHTML);
