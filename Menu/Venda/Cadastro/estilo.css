@@ -189,6 +189,27 @@ input
     margin-left: auto;
     text-align: center;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.botao2
+{
+    background-color: white;
+    padding: 3px;
+    min-width: 10%;
+    color: #963b06;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-left: auto;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.botao2:hover
+{
+    color: rgb(167, 167, 167);
+    text-decoration: none;
 }
 
 .botao:hover
@@ -211,4 +232,38 @@ input
 .excluir:hover
 {
     text-decoration: none;
+}
+
+#carregarProduto
+{
+    position: absolute;
+    min-width: 30%;
+    max-width: 30%;
+    min-height: 30%;
+    max-height: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -150%;
+    transform: translateY(-20);
+    box-shadow: rgba(0, 0, 0, 0.452) 2px 2px 2px;
+    background-color: #963b06;
+    border-radius: 3px;
+    transition: 0.5s;
+}
+
+
+.caixaProduto > .form-item-label
+{
+    color: white !important;
+}
+
+.esconde
+{
+    top: 50% !important;
+    transition: 0.5s;
+}
+
+.form-item2
+{
+    padding: 15px;
 }

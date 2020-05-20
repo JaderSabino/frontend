@@ -69,7 +69,7 @@
       </h1>
       <form action="" id="formulario">
         <div class="form-item">
-            <label class="form-item-label" for="">CODIGO</label>
+            <label class="form-item-label" for="">NOME</label>
             <input class="form-item-input" type="text" name="" id="">
         </div>
         <dvi class="form-item">
@@ -82,14 +82,14 @@
         </div>
         <div class="form-item" id="form-radio">
           <label class="form-item-label" for="">UNIDADE MEDIDA</label>
-          <input class="form-item-radio" type="radio" name="gender" value="kg">kg
-          <input class="form-item-radio" type="radio" name="gender" value="unitario">unitário
+          <input class="form-item-radio" type="radio" name="gender" value="kg" CHECKED>kg
+          <input class="form-item-radio" type="radio" name="gender" value="un">unitário
         </div>
       </form>
       <div class="botoes">
-        <a class="botao" href="../../index.html">VOLTAR</a>
-        <a class="botao" href="../../index.html">CANCELAR</a>
-        <a class="botao" href="../../index.html">SALVAR</a>
+        <a class="botao" id="voltar" onclick="voltar()">VOLTAR</a>
+        <a class="botao" id="cancelar" onclick="cancelar()">CANCELAR</a>
+        <a class="botao" id="salvar" onclick="salvar()">SALVAR</a>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

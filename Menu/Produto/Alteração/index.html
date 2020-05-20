@@ -6,8 +6,9 @@
     <title>Alteração Produto</title>
     <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="estilo.css" rel="stylesheet">
+    <script src="scriptFormulario.js"></script>
 </head>
-<body>
+<body onload="geraObjeto(), cancelar()">
 
     <div class="container">
         <nav class="navbar navbar-default tira-borda backwhite">
@@ -72,8 +73,10 @@
       </h1>
       <form action="" id="formulario">
         <div class="form-item">
-            <label class="form-item-label" for="">CODIGO</label>
-            <input class="form-item-input" type="text" name="" id="">
+          <label class="form-item-label" for="">produto</label>
+          <select id="listaProdutos" name="select" class="form-item-input">
+            <option value="valor1" selected>---</option> 
+          </select>
         </div>
         <dvi class="form-item">
             <label class="form-item-label" for="">PREÇO</label>
@@ -88,15 +91,19 @@
           <input class="form-item-radio" type="radio" name="gender" value="kg">kg
           <input class="form-item-radio" type="radio" name="gender" value="unitario">unitário
         </div>
+        <div class="form-item" id="form-radio">
+          <label class="form-item-label" for="">PRODUTO ATIVO</label>
+          <input class="form-item-radio" type="radio" name="gender2" value="S">S
+          <input class="form-item-radio" type="radio" name="gender2" value="N">N
+        </div>
       </form>
       <div class="botoes">
-        <a class="botao" href="../../index.html">VOLTAR</a>
-        <a class="botao" href="../../index.html">PESQUISAR</a>
-        <a class="botao" href="../../index.html">SALVAR</a>
+        <a class="botao" id="voltar" onclick="voltar()">VOLTAR</a>
+        <a class="botao" id="cancelar" onclick="cancelar()">CANCELAR</a>
+        <a class="botao" id="salvar" onclick="salvar()">SALVAR</a>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../../../bootstrap/js/bootstrap.min.js"></script>
-    <script src="scriptFormulario.js"></script>
 </body>
 </html>

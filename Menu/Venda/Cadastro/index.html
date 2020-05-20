@@ -7,7 +7,7 @@
     <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="estilo.css" rel="stylesheet">
 </head>
-<body>
+<body onload="geraObjetoCliente(),geraObjetoProduto(),cancelar()">
 
     <div class="container">
         <nav class="navbar navbar-default tira-borda backwhite">
@@ -70,47 +70,57 @@
       <form action="" id="formulario">
         <div class="form-item">
             <label class="form-item-label" for="">CLIENTE</label>
-            <select name="select" class="form-item-input">
-              <option value="valor1" selected>Jader</option> 
-              <option value="valor2">João</option>
-              <option value="valor3">Alex</option>
+            <select id="listaClientes" name="select" class="form-item-input">
+              <option value="valor1" selected>---</option> 
             </select>
         </div>
         <div class="form-item">
-            <label class="form-item-label" for="">VALOR TOTAL</label>
-            <input class="form-item-input" type="text" name="" id="">
+            <label class="form-item-label">VALOR TOTAL</label>
+            <input class="form-item-input" type="text" readonly>
         </div>
-        <div class="form-item">
-          <table class="form-table">
-            <thead>
-              <th>CODIGO</th>
-              <th>NOME</th>
-              <th>QUANTIDADE</th>
-              <th>VALOR</th>
-              <th></th>
-            </thead>
-            <tbody>
-              <td>1</td>
-              <td>Refrigerante</td>
-              <td>2</td>
-              <td>R$ 5,00</td>
-              <td><a class="excluir">Excluir</a></td>
-            </tbody>
-            <tbody>
-              <td>1</td>
-              <td>Refrigerante</td>
-              <td>2</td>
-              <td>R$ 5,00</td>
-              <td><a class="excluir">Excluir</a></td>
-            </tbody>
-          </table>
+          <div class="form-item">
+            <table class="form-table">
+              <thead>
+                <th>CODIGO</th>
+                <th>NOME</th>
+                <th>QUANTIDADE</th>
+                <th>VALOR</th>
+                <th></th>
+              </thead>
+              <tbody id="listaVenda">
+  
+              </tbody>
+            </table>
         </div>
       </form>
       <div class="botoes">
-        <a class="botao" href="../../index.html">VOLTAR</a>
-        <a class="botao" href="../../index.html">ADICIONAR PRODUTO</a>
-        <a class="botao" href="../../index.html">FINALIZAR</a>
+        <a class="botao" id="addProd" onclick="caixaProduto()">ADICIONAR PRODUTO</a>
+        <a class="botao" id="voltar" onclick="voltar()">VOLTAR</a>
+        <a class="botao" id="cancelar" onclick="cancelar()">CANCELAR</a>
+        <a class="botao" id="salvar" onclick="salvar()">FINALIZAR VENDA</a>
       </div>
+    </div>
+    <div class="caixaProduto">
+      <form action="" id="carregarProduto" >
+        <div class="form-item2">
+          <label class="form-item-label" style="color: white;" for="">PRODUTO</label>
+          <select id="listaProdutos" name="select" class="form-item-input">
+            <option value="valor1" selected>---</option> 
+          </select>
+        </div>
+        <div class="form-item2">
+          <label class="form-item-label" style="color: white;" for="">VALOR</label>
+          <input class="form-item-input" type="text" readonly>
+        </div>
+        <div class="form-item2">
+          <label class="form-item-label" style="color: white;" for="">QUANTIDADE</label>
+          <input class="form-item-input" type="text" name="" id="">
+        </div>
+        <div class="botoes">
+          <a class="botao2" id="addProd" onclick="listarProduto()">ADICIONAR AO CARRINHO</a>
+          <a class="botao2" id="addProd" onclick="caixaProduto()">FECHAR</a>
+        </div>
+      </form>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../../../bootstrap/js/bootstrap.min.js"></script>
