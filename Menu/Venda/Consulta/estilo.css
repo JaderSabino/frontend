@@ -3,6 +3,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     overflow-x: hidden;
+    background-attachment: fixed;
 }
 
 .tira-borda
@@ -78,13 +79,29 @@ body{
 
 .conteudo
 {
-    position: relative;
+    position: absolute;
     width: 80%;
     background-color: white;
     left: 50%;
     transform: translateX(-50%);
     padding-top: 70px;
     padding-left: 50px;
+}
+
+.conteudo2
+{
+    position: absolute;
+    width: 80%;
+    background-color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 70px;
+    padding-left: 50px;
+}
+
+.escondeConteudo
+{
+    display: none;
 }
 
 .titulo
@@ -188,6 +205,7 @@ input
     margin-left: auto;
     text-align: center;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .botao:hover
@@ -197,6 +215,33 @@ input
 }
 
 .botao:visited
+{
+    text-decoration: none;
+}
+
+.listaVendas
+{
+    position: absolute;
+    color: white;
+    background-color: #963b06 !important;
+    top: -150%;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.ativaDesativaListaVendas
+{
+    top: 50% !important;
+}
+
+.abrirVenda
+{
+    text-transform: capitalize;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.abrirVenda:hover
 {
     text-decoration: none;
 }

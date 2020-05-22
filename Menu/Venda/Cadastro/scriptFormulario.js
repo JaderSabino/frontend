@@ -27,8 +27,9 @@ const cancelar = () => {
     for (let index = 0; index < itemVenda.length; index++) {
         itemVenda[index].remove();
     }
+    geraObjetoProduto();
+    geraObjetoCliente();
     let formulario = document.querySelector('#formulario');
-    formulario[0][0].selected = true;
     formulario[1].value = '';
     indexExcluir = 0;
     carrinho = [];
@@ -84,11 +85,15 @@ const geraObjetoCliente = async () => {
 }
 
 const inserirClientes = (listCli) => {
+    limpaListaCliente();
     const listaClientes = document.querySelector('#listaClientes'); 
+    const option = document.createElement('option');
+    option.setAttribute('value','valor1');
+    option.innerHTML += '---';
+    listaClientes.appendChild(option);
     for (let index = 0; index < listCli.length; index++) {
         const option = document.createElement('option');
-        const valor = 'valor'+(index+2);
-        option.setAttribute('value',valor);
+        option.setAttribute('value',listCli[index]['cpf_cliente']);
         option.setAttribute('onclick','selectcliente(this)');
         option.innerHTML += listCli[index]['nome_cliente'];
         listaClientes.appendChild(option);
@@ -96,14 +101,14 @@ const inserirClientes = (listCli) => {
 }
 
 const selectcliente = (botao) => {
-    consultaCliente(botao.innerHTML);
+    consultaCliente(botao.value);
 }
 
-const consultaCliente = (cliente) => {
+const consultaCliente = (cpf_cliente) => {
     for (let index = 0; index < listClientes.length; index++) {
-        if(listClientes[index]['nome_cliente'] == cliente){
+        if(listClientes[index]['cpf_cliente'] == cpf_cliente){
             cliente = listClientes[index];
-            cliente['nome_cliente'] = cliente;
+            //cliente['nome_cliente'] = cliente;
         }
     }
 }
@@ -158,7 +163,13 @@ const geraObjetoProduto = async () => {
 }
 
 const inserirProdutos = (listProd) => {
-    const listaProdutos = document.querySelector('#listaProdutos'); 
+    limpaListaProduto();
+    const listaProdutos = document.querySelector('#listaProdutos');
+    const option = document.createElement('option');
+    const valor = 'valor1';
+    option.setAttribute('value',valor);
+    option.innerHTML += '---';
+    listaProdutos.appendChild(option);
     for (let index = 0; index < listProd.length; index++) {
         if(listProd[index]['produto_ativo'] == 'S' && listProd[index]['quantidade'] > 0){
             const option = document.createElement('option');
@@ -169,6 +180,16 @@ const inserirProdutos = (listProd) => {
             listaProdutos.appendChild(option);
         }
     }
+}
+
+const limpaListaProduto = () => {
+    const listaProdutos = document.querySelector('#listaProdutos');
+    listaProdutos.innerHTML = '';
+}
+
+const limpaListaCliente = () => {
+    const listaClientes = document.querySelector('#listaClientes'); 
+    listaClientes.innerHTML = '';
 }
 
 const selectproduto = (botao) => {
@@ -183,7 +204,7 @@ const consultaProduto = (prod) => {
             produto['nome_produto'] = prod;
         }
     }
-    carregarProduto[1].value = produto['preco'];
+    carregarProduto[1].value = 'R$ ' + produto['preco'];
     carregarProduto[2].value = '';
 }
 
@@ -217,9 +238,11 @@ const listarProduto = () => {
                 tdNome.innerText = produto['nome_produto'];
                 tdQuantidade.innerText = carregarProduto[2].value;
                 let valor = Number(produto['preco']) * Number(carregarProduto[2].value);
-                tdValor.innerText = valor;
-                let valorTotal = Number(formulario[1].value);
-                formulario[1].value = valorTotal + valor;
+                tdValor.innerText = 'R$ ' + valor;
+                let valorTotal = Number(formulario[1].value.replace('R$', ''));
+                let valorInserir = valorTotal + valor;
+                console.log(valorTotal, valor);
+                formulario[1].value = 'R$ ' + valorInserir;
     
                 const aExcluir = document.createElement('a'); 
                 aExcluir.classList.add('excluir');
@@ -270,9 +293,9 @@ const excluirItem = (item) => {
     for (let index = 0; index < itemVenda.length; index++) {
         if(itemVenda[index].getAttribute('name') == item){
             let valor = Number(itemVenda[index].cells[3].innerText);
-            let valorTotal = Number(formulario[1].value);
-            formulario[1].value = valorTotal - valor;
-            if(formulario[1].value == '0'){
+            let valorTotal = Number(formulario[1].value.replace('R$', ''));
+            formulario[1].value = 'R$ ' + (valorTotal - valor);
+            if(formulario[1].value == 'R$ 0'){
                 formulario[1].value = '';
             }
             retiraItemCarrinho(itemVenda[index].childNodes[0].innerText);
@@ -322,7 +345,7 @@ const geraVenda = async () => {
         }
     }
     let cliente = listClientes[indice-1];
-    venda = new Venda({'valor_total': `${formulario[1].value}`, 'cpf_cliente': `${cliente['cpf_cliente']}`});
+    venda = new Venda({'valor_total': `${formulario[1].value.replace('R$', '')}`, 'cpf_cliente': `${cliente['cpf_cliente']}`});
     const res = await fetch(urlVenda,{
         method: 'POST',
         headers: {

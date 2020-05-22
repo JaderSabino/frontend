@@ -7,7 +7,7 @@
     <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="estilo.css" rel="stylesheet">
 </head>
-<body>
+<body onload="carregarPagina()">
 
   <div class="container">
     <nav class="navbar navbar-default tira-borda backwhite">
@@ -59,7 +59,7 @@
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
-</div>
+  </div>
 
     <div class="logo">
       <img src="../../../img/logo_menu.png" class="logo sombra">
@@ -71,11 +71,13 @@
       <form action="" id="formulario">
         <div class="form-item">
             <label class="form-item-label" for="">CPF</label>
-            <input class="form-item-input" type="text" name="" id="">
+            <input class="form-item-input" type="text" onkeydown="consultaClienteEnter(event)">
         </div>
         <dvi class="form-item">
-            <label class="form-item-label" for="">NOME</label>
-            <input class="form-item-input" type="text" name="" id="">
+            <label class="form-item-label" for="">CLIENTE</label>
+            <select id="listaClientes" name="select" class="form-item-input">
+            </select>
+            <a class="alterarNome" onclick="alteraNome()">Alterar Nome</a>
         </dvi>
         <div class="form-item">
             <label class="form-item-label" for="">TELEFONE</label>
@@ -90,7 +92,17 @@
         <a class="botao" id="voltar" onclick="voltar()">VOLTAR</a>
         <a class="botao" id="cancelar" onclick="cancelar()">CANCELAR</a>
         <a class="botao" id="salvar" onclick="salvar()">SALVAR</a>
-    </div>
+      </div>
+      <div id="caixaAlterarNome" class="">
+        <form action="">
+          <div class="form-item">
+            <label class="form-item-label" style="color: white;">NOVO NOME</label>
+            <input id="input-altera-nome" class="form-item-input" type="text">
+          </div>
+        </form>
+        <a class="botao botaoAlteraNome" id="cancelaAlteraNome" onclick="ativaDesativaAlteraNome()">CANCELAR</a>
+        <a class="botao botaoAlteraNome" id="confirmaAlteraNome" onclick="confirmaAlteraNome()">CONFIRMAR</a>
+      </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../../../bootstrap/js/bootstrap.min.js"></script>
     <script src="scriptFormulario.js"></script>

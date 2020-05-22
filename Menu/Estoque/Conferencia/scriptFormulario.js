@@ -36,7 +36,13 @@ const geraObjeto = async () => {
 }
 
 const inserirProdutos = (listProd) => {
-    const listaProdutos = document.querySelector('#listaProdutos'); 
+    limpaListaProduto();
+    const listaProdutos = document.querySelector('#listaProdutos');
+    const option = document.createElement('option');
+    const valor = 'valor1';
+    option.setAttribute('value',valor);
+    option.innerHTML += '---';
+    listaProdutos.appendChild(option);
     for (let index = 0; index < listProd.length; index++) {
         if(listProd[index]['produto_ativo'] == 'S'){
             const option = document.createElement('option');
@@ -47,6 +53,11 @@ const inserirProdutos = (listProd) => {
             listaProdutos.appendChild(option);
         }
     }
+}
+
+const limpaListaProduto = () => {
+    const listaProdutos = document.querySelector('#listaProdutos');
+    listaProdutos.innerHTML = '';
 }
 
 const consultaProduto = (prod) => {

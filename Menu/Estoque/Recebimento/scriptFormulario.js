@@ -36,7 +36,13 @@ const geraObjeto = async () => {
 }
 
 const inserirProdutos = (listProd) => {
-    const listaProdutos = document.querySelector('#listaProdutos'); 
+    limpaListaProduto();
+    const listaProdutos = document.querySelector('#listaProdutos');
+    const option = document.createElement('option');
+    const valor = 'valor1';
+    option.setAttribute('value',valor);
+    option.innerHTML += '---';
+    listaProdutos.appendChild(option); 
     for (let index = 0; index < listProd.length; index++) {
         if(listProd[index]['produto_ativo'] == 'S'){
             const option = document.createElement('option');
@@ -47,6 +53,11 @@ const inserirProdutos = (listProd) => {
             listaProdutos.appendChild(option);
         }
     }
+}
+
+const limpaListaProduto = () => {
+    const listaProdutos = document.querySelector('#listaProdutos');
+    listaProdutos.innerHTML = '';
 }
 
 
@@ -84,18 +95,20 @@ const receber = () => {
 
 const receberProduto = async () => {
     const formulario = document.querySelector('#formulario');
+    let dados = []
     const recebimento = {
         'operacao': 'E',
         'quantidade_acao': `${formulario[1].value}`, 
         'id_produto': `${produto['id_produto']}`
     }
+    dados.push(recebimento);
     const res = await fetch(urlAtualizaProduto,{
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(recebimento)
+        body: JSON.stringify(dados)
     }).then((res) => {
         return res.json();
     });

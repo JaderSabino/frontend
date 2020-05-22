@@ -2,6 +2,7 @@ body{
     background-image: url(../../../img/fundo.png);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     overflow-x: hidden;
 }
 
@@ -179,6 +180,17 @@ input
     cursor: pointer;
 }
 
+.botaoAlteraNome
+{
+    background-color: white !important;
+    color: #963b06 !important;
+}
+
+.botaoAlteraNome:hover
+{
+    color: #963b06a2 !important;
+}
+
 .botao:hover
 {
     color: rgb(167, 167, 167);
@@ -190,3 +202,30 @@ input
     text-decoration: none;
 }
 
+.alterarNome
+{
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: none;
+}
+
+.alterarNome:hover
+{
+    text-decoration: none;
+}
+
+#caixaAlterarNome
+{
+    position: absolute;
+    background-color: #963b06;
+    top: -150%;
+    text-align: center;
+    padding: 10px;
+}
+
+.ativaAlteraNome
+{
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%) !important;
+}

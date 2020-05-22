@@ -2,6 +2,7 @@ body{
     background-image: url(../../../img/fundo.png);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     overflow-x: hidden;
 }
 
@@ -248,7 +249,6 @@ input
     box-shadow: rgba(0, 0, 0, 0.452) 2px 2px 2px;
     background-color: #963b06;
     border-radius: 3px;
-    transition: 0.5s;
 }
 
 
@@ -260,7 +260,6 @@ input
 .esconde
 {
     top: 50% !important;
-    transition: 0.5s;
 }
 
 .form-item2
