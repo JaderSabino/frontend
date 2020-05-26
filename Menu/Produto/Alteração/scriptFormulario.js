@@ -1,8 +1,11 @@
 let url = 'http://127.0.0.1:3000/produto/';
 
 const salvar = () => {
-    getFormulario();
-    cancelar();
+    getFormulario()
+    .then(cancelar())
+    .catch((err) => {
+        alert('Erro ao alterar produto');
+    });
 }
 
 const cancelar = () => {
@@ -14,6 +17,7 @@ const cancelar = () => {
     formulario[3].checked = false;
     formulario[4].checked = false;
     formulario[5].checked = false;
+    produto = '';
 }
 
 const voltar = () => {
@@ -26,10 +30,10 @@ const limpaFormulario = (form) =>{
     }
 }
 
-const getFormulario = () => {
+const getFormulario = async () => {
     let formulario = document.querySelector('#formulario');
     if(validaFormulario(formulario)){
-        return inserirProduto(converteJson(formulario));
+        return await inserirProduto(converteJson(formulario));
     }else{
         alert('Favor preencher todos os campos');
     }
@@ -59,7 +63,7 @@ const converteJson = (form) => {
     }
     return {
         nome_produto: form[0].innerText,
-        preco: form[1].value,
+        preco: form[1].value.replace('R$ ', ''),
         unidade_medida: undMed,
         produto_ativo: ativo
     }
@@ -70,7 +74,6 @@ const inserirProduto = async (dadosCliente) => {
         produto['preco'] = dadosCliente['preco'].replace(",", ".");
         produto['unidade_medida'] = dadosCliente['unidade_medida'];
         produto['produto_ativo'] = dadosCliente['produto_ativo'];
-        console.log(produto);
         const res = await fetch(url + produto['id_produto'],{
             method: 'PUT',
             headers: {
@@ -125,10 +128,24 @@ const geraObjeto = async () => {
 }
 
 const inserirProdutos = (listProd) => {
+    let formulario = document.getElementById('formulario');
+    limpaFormulario(formulario);
+    formulario[1].value = '';
+    formulario[2].checked = false;
+    formulario[3].checked = false;
+    formulario[4].checked = false;
+    formulario[5].checked = false;
     const listaProdutos = document.querySelector('#listaProdutos'); 
+    const option = document.createElement('option');
+    const valor = 'valor1';
+    option.setAttribute('value',valor);
+    option.setAttribute('onclick','selectproduto(this)');
+    option.innerHTML = '---';
+    listaProdutos.appendChild(option);
+    listaProdutos[0].selected = true;
     for (let index = 0; index < listProd.length; index++) {
         const option = document.createElement('option');
-        const valor = 'valor'+(index+2);
+        const valor = listProd[index]['id_produto'];
         option.setAttribute('value',valor);
         option.setAttribute('onclick','selectproduto(this)');
         option.innerHTML += listProd[index]['nome_produto'];
@@ -137,14 +154,13 @@ const inserirProdutos = (listProd) => {
 }
 
 const consultaProduto = (prod) => {
-    formulario = document.querySelector('#formulario');
+    let formulario = document.querySelector('#formulario');
     for (let index = 0; index < listProd.length; index++) {
-        if(listProd[index]['nome_produto'] == prod){
+        if(listProd[index]['id_produto'] == prod){
             produto = listProd[index];
-            produto['nome_produto'] = prod;
         }
     }
-    formulario[1].value = produto['preco'];
+    formulario[1].value = 'R$ ' + produto['preco'];
     if(produto['unidade_medida'] == 'kg'){
         formulario[2].checked = true;
     }else{
@@ -158,5 +174,14 @@ const consultaProduto = (prod) => {
 }
 
 const selectproduto = (botao) => {
-    consultaProduto(botao.innerHTML);
+    let formulario = document.querySelector('#formulario');
+    if(botao.innerHTML == '---'){
+        formulario[1].value = '';
+        formulario[2].checked = false;
+        formulario[3].checked = false;
+        formulario[4].checked = false;
+        formulario[5].checked = false;
+    }else{
+        consultaProduto(botao.value);
+    }
 }

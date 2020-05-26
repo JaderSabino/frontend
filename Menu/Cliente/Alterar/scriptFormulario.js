@@ -5,7 +5,6 @@ const KEY_ENTER = 13;
 const salvarAtivo = false;
 
 const carregarPagina = () => {
-    let formulario = document.querySelector('#formulario');
     cancelar();
     geraObjetoCliente();
 }
@@ -16,7 +15,7 @@ const salvar = () => {
         carregarPagina();
     })
     .catch((err) => {
-        alert('Erro ao Atualizar Cliente')
+        alert('Erro ao Atualizar Cliente');
     });
 }    
 
@@ -64,10 +63,9 @@ const converteJson = (form) => {
 }
 
 const getNomeCliente = (form) => {
-    let cpf = form[0].value;
-    for (let index = 0; index < form.length; index++) {
-        if(form[1][index].value == cpf){
-            return form[1][index].innerHTML;
+    for (let index = 0; index < form[1].length; index++) {
+        if(form[1][index].selected){
+            return form[1][index].innerText;
         }
     }
 }
@@ -104,7 +102,6 @@ let listClientes = [];
 
 const geraObjetoCliente = async () => {
     listClientes = [];
-    console.log(listClientes)
     const res = await fetch(urlListarClientes,{
         method: 'GET',
         headers: {
@@ -145,7 +142,6 @@ const consultaCliente = (cpfCliente) => {
     for (let index = 0; index < listClientes.length; index++) {
         if(listClientes[index]['cpf_cliente'] == cpfCliente){
             cliente = listClientes[index];
-            //cliente['nome_cliente'] = cliente;
         }
     }
     preencherFormulario(cliente);

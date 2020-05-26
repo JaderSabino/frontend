@@ -1,7 +1,11 @@
 let url = 'http://127.0.0.1:3000/produto/';
 
 const salvar = () => {
-    getFormulario();
+    getFormulario()
+    .then(cancelar())
+    .catch((err) => {
+        alert('Erro ao inserir produto');
+    });
 }
 
 const cancelar = () => {
@@ -19,10 +23,10 @@ const limpaFormulario = (form) =>{
     }
 }
 
-const getFormulario = () => {
+const getFormulario = async () => {
     let formulario = document.querySelector('#formulario');
     if(validaFormulario(formulario)){
-        return inserirProduto(converteJson(formulario));
+        return await inserirProduto(converteJson(formulario));
     }else{
         alert('Favor preencher todos os campos');
     }

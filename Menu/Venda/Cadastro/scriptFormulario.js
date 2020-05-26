@@ -37,6 +37,7 @@ const cancelar = () => {
     produtoCarrinho = '';
     vendaSucesso = false;
     itemVendaSucesso = false;
+    ativo = false
 }
 
 const caixaProduto = () => {
@@ -292,7 +293,7 @@ const excluirItem = (item) => {
     let formulario = document.querySelector('#formulario');
     for (let index = 0; index < itemVenda.length; index++) {
         if(itemVenda[index].getAttribute('name') == item){
-            let valor = Number(itemVenda[index].cells[3].innerText);
+            let valor = Number(itemVenda[index].cells[3].innerText.replace('R$ ', ''));
             let valorTotal = Number(formulario[1].value.replace('R$', ''));
             formulario[1].value = 'R$ ' + (valorTotal - valor);
             if(formulario[1].value == 'R$ 0'){
@@ -308,7 +309,7 @@ class Venda {
     constructor(venda) {
       this.valor_total = venda['valor_total'];
       this.venda_ativa = 'S';
-      this.cpf_usuario = '1844102661';
+      this.cpf_usuario = '11122233344';
       this.cpf_cliente = venda['cpf_cliente'];
     }
 }
