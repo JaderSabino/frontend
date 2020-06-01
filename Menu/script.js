@@ -9,6 +9,13 @@ function load(){
 
 }
 
+const validaSaida = () => {
+    let res = confirm('Deseja realmente Sair?');
+    if(res){
+        window.location.href = '../Login/index.html';
+    }
+}
+
 
 
 function background(elemento){

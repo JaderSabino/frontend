@@ -224,8 +224,9 @@ const listarProduto = () => {
             if(!validaProduto(produto, carregarProduto[2].value)){
                 alert('Somente ' + produto['quantidade'] + ' ' + produto['nome_produto'] + ' no estoque');
             }else{
-                produto['quantidade'] = carregarProduto[2].value;
+                produto['quantidade'] = carregarProduto[2].value.replace(',', '.');
                 carrinho.push(new ProdutoCarrinho(produto));
+                console.log(carrinho)
                 const tr = document.createElement('tr');
                 tr.classList.add('itemVenda');
                 tr.setAttribute('name', indexExcluir);
@@ -237,13 +238,13 @@ const listarProduto = () => {
     
                 tdCodigo.innerText = produto['id_produto'];
                 tdNome.innerText = produto['nome_produto'];
-                tdQuantidade.innerText = carregarProduto[2].value;
-                let valor = Number(produto['preco']) * Number(carregarProduto[2].value);
+                tdQuantidade.innerText = carregarProduto[2].value.replace(',', '.');
+                let valor = Number(produto['preco']) * Number(carregarProduto[2].value.replace(',', '.'));
                 tdValor.innerText = 'R$ ' + valor;
                 let valorTotal = Number(formulario[1].value.replace('R$', ''));
                 let valorInserir = valorTotal + valor;
                 console.log(valorTotal, valor);
-                formulario[1].value = 'R$ ' + valorInserir;
+                formulario[1].value = 'R$ ' + valorInserir.toFixed(2);
     
                 const aExcluir = document.createElement('a'); 
                 aExcluir.classList.add('excluir');
@@ -295,8 +296,8 @@ const excluirItem = (item) => {
         if(itemVenda[index].getAttribute('name') == item){
             let valor = Number(itemVenda[index].cells[3].innerText.replace('R$ ', ''));
             let valorTotal = Number(formulario[1].value.replace('R$', ''));
-            formulario[1].value = 'R$ ' + (valorTotal - valor);
-            if(formulario[1].value == 'R$ 0'){
+            formulario[1].value = 'R$ ' + (valorTotal - valor).toFixed(2);
+            if(formulario[1].value == 'R$ 0.00'){
                 formulario[1].value = '';
             }
             retiraItemCarrinho(itemVenda[index].childNodes[0].innerText);

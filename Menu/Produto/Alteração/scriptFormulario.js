@@ -71,20 +71,24 @@ const converteJson = (form) => {
 
 const inserirProduto = async (dadosCliente) => {
     if(produto){
-        produto['preco'] = dadosCliente['preco'].replace(",", ".");
-        produto['unidade_medida'] = dadosCliente['unidade_medida'];
-        produto['produto_ativo'] = dadosCliente['produto_ativo'];
-        const res = await fetch(url + produto['id_produto'],{
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(produto)
-        }).then((res) => {
-            return res.json();
-        });
-        alert(res['message']);
+        if(parseInt(produto['quantidade']) != 0 && dadosCliente['produto_ativo'] == 'N'){
+            alert('Produto ainda possui estoque!');
+        }else{
+            produto['preco'] = dadosCliente['preco'].replace(",", ".");
+            produto['unidade_medida'] = dadosCliente['unidade_medida'];
+            produto['produto_ativo'] = dadosCliente['produto_ativo'];
+            const res = await fetch(url + produto['id_produto'],{
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(produto)
+            }).then((res) => {
+                return res.json();
+            });
+            alert(res['message']);
+        }
     }else{
         alert('Nenhum produto para alteração selecionado');
     }
